@@ -8,7 +8,9 @@ export default function Footer() {
           <div className="vr"></div>
           <a href="#skills">Skills</a>
           <div className="vr"></div>
-          <a href="#portfolio">Portfolio</a>
+          <a href="#research">Research</a>
+          <div className="vr"></div>
+          <a href="#portfolio">Projects</a>
           <div className="vr"></div>
           <a href="#contact">Contact</a>
         </div>
