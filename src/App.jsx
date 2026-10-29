@@ -23,6 +23,7 @@ export default function App() {
         <Hero />
         <Expertise />
         <Skills />
+        <Research />
         <Projects />
         <Contact />
       </main>
