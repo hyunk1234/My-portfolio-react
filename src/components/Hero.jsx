@@ -63,7 +63,7 @@ export default function Hero() {
 
         <div className="col-10 col-md-4 d-none d-md-block">
           <img
-            src={`${import.meta.env.BASE_URL}images/profile.jpg`}
+            src={`${import.meta.env.BASE_URL}images/original_ff396240-a24a-48a5-86d3-d874b355626c_PXL_20220209_161718930-removebg-preview.png`}
             alt="Profile"
             className="hero-image"
           />
