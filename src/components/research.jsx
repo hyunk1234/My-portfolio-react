@@ -3,22 +3,14 @@ const publications = [
     id: "attention-functor",
     title:
       "Attention Is a Functor: Enforcing Categorical Structure in Transformers",
-    authors:
-      "Hyun Kim, Satyam Mishra, Tran Duc Tan, Vishwanath Bijalwan",
+    authors: "Hyun Kim, Satyam Mishra, Tran Duc Tan, Vishwanath Bijalwan",
     venue: "ICTA 2025 · Springer",
     year: 2026,
     description:
       "Developed a transformer attention mechanism based on category theory, enforcing identity and composition laws through a novel functor loss. Evaluated compositional generalization and interpretability using the SCAN and GeoQuery benchmarks.",
-    topics: [
-      "Deep Learning",
-      "Transformers",
-      "Category Theory",
-      "NLP",
-    ],
-    paperUrl:
-      "https://doi.org/10.1007/978-3-032-18162-6_3",
-    codeUrl:
-      "https://github.com/satyamcser/attention-as-functor-transformer",
+    topics: ["Deep Learning", "Transformers", "Category Theory", "NLP"],
+    paperUrl: "https://doi.org/10.1007/978-3-032-18162-6_3",
+    codeUrl: "https://github.com/satyamcser/attention-as-functor-transformer",
   },
 ];
 
@@ -29,8 +21,8 @@ export default function Research() {
         <div className="text-center mb-5">
           <h2 className="fw-bold">Research & Publications</h2>
           <p className="text-muted">
-            Exploring the intersection of mathematics
-            and artificial intelligence.
+            Exploring the intersection of mathematics and artificial
+            intelligence.
           </p>
         </div>
 
@@ -40,33 +32,22 @@ export default function Research() {
               <article className="research-card">
                 <div className="research-heading">
                   <i className="bi bi-journal-text"></i>
-                  <span className="research-badge">
-                    Published Research
-                  </span>
+                  <span className="research-badge">Published Research</span>
                 </div>
 
-                <h3 className="research-title">
-                  {paper.title}
-                </h3>
+                <h3 className="research-title">{paper.title}</h3>
 
-                <p className="research-authors">
-                  {paper.authors}
-                </p>
+                <p className="research-authors">{paper.authors}</p>
 
                 <p className="research-venue">
                   {paper.venue} · {paper.year}
                 </p>
 
-                <p className="research-description">
-                  {paper.description}
-                </p>
+                <p className="research-description">{paper.description}</p>
 
                 <div className="research-topics">
                   {paper.topics.map((topic) => (
-                    <span
-                      className="project-tag"
-                      key={topic}
-                    >
+                    <span className="project-tag" key={topic}>
                       {topic}
                     </span>
                   ))}

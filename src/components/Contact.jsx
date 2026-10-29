@@ -1,12 +1,8 @@
-
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import PhoneInput, {
-  isValidPhoneNumber,
-} from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 
 import "react-phone-number-input/style.css";
-
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -28,21 +24,18 @@ export default function Contact() {
     if (!form) return;
 
     if (!phone || !isValidPhoneNumber(phone)) {
-        setError("Please enter a valid phone number with a country code.");
-        setStatus("error");
-        return;
+      setError("Please enter a valid phone number with a country code.");
+      setStatus("error");
+      return;
     }
 
     setError("");
     setStatus("sending");
 
     try {
-      await emailjs.sendForm(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        form,
-        { publicKey: PUBLIC_KEY }
-      );
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, {
+        publicKey: PUBLIC_KEY,
+      });
 
       setStatus("success");
       form.reset();
@@ -59,21 +52,18 @@ export default function Contact() {
         <div className="text-center mb-5">
           <h2 className="fw-bold">Get In Touch</h2>
           <p className="text-muted">
-            Have a question or want to collaborate?
-            Feel free to reach out!
+            Have a question or want to collaborate? Feel free to reach out!
           </p>
         </div>
 
         <div className="row g-5 align-items-start">
           {/* Contact information */}
           <div className="col-lg-4">
-            <h3 className="fw-semibold mb-4">
-              Let's Connect
-            </h3>
+            <h3 className="fw-semibold mb-4">Let's Connect</h3>
 
             <p className="text-muted">
-              I'm always interested in learning about new
-              projects, opportunities, and collaborations.
+              I'm always interested in learning about new projects,
+              opportunities, and collaborations.
             </p>
 
             <div className="contact-info">
@@ -152,28 +142,28 @@ export default function Contact() {
                 </div>
 
                 <div className="col-12">
-                    <label htmlFor="phone" className="form-label">
-                        Phone Number <span className="text-danger">*</span>
-                    </label>
+                  <label htmlFor="phone" className="form-label">
+                    Phone Number <span className="text-danger">*</span>
+                  </label>
 
-                    <PhoneInput
-                        id="phone"
-                        international
-                        defaultCountry="US"
-                        countryCallingCodeEditable={false}
-                        placeholder="Enter phone number"
-                        value={phone}
-                        onChange={(value) => setPhone(value || "")}
-                        className="form-control phone-input"
-                        aria-required="true"
-                    />
+                  <PhoneInput
+                    id="phone"
+                    international
+                    defaultCountry="US"
+                    countryCallingCodeEditable={false}
+                    placeholder="Enter phone number"
+                    value={phone}
+                    onChange={(value) => setPhone(value || "")}
+                    className="form-control phone-input"
+                    aria-required="true"
+                  />
 
-                    <input type="hidden" name="phone" value={phone} />
+                  <input type="hidden" name="phone" value={phone} />
 
-                    <small className="text-muted">
-                        Select your country code and enter your phone number.
-                    </small>
-                </div>      
+                  <small className="text-muted">
+                    Select your country code and enter your phone number.
+                  </small>
+                </div>
 
                 <div className="col-12">
                   <label htmlFor="message" className="form-label">

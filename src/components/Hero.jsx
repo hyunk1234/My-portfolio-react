@@ -39,29 +39,36 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [text, deleting, phraseIndex]);
 
-  return(
+  return (
     <section id="home" className="home pt-5 pb-5">
       <div className="container row justify-content-evenly align-middle">
-        <div className="col-10 col-md-6 text-center text-md-start" data-aos="slide-right">
-            <h1>Hello! I Am <span style={{ color: '#6f34fe' }}>Hyun</span></h1>
+        <div
+          className="col-10 col-md-6 text-center text-md-start"
+          data-aos="slide-right"
+        >
+          <h1>
+            Hello! I Am <span style={{ color: "#6f34fe" }}>Hyun</span>
+          </h1>
 
-        <h3>
-          I'm a <span>{text}</span>
-          <span className="typing-cursor">|</span>
-        </h3>
+          <h3>
+            I'm a <span>{text}</span>
+            <span className="typing-cursor">|</span>
+          </h3>
 
-        <p>
-          I build web applications and explore software development,
-          AI, and machine learning.
-        </p>
+          <p>
+            I build web applications and explore software development, AI, and
+            machine learning.
+          </p>
         </div>
 
         <div className="col-10 col-md-4 d-none d-md-block">
-            <img src="/public/images/original_ff396240-a24a-48a5-86d3-d874b355626c_PXL_20220209_161718930-removebg-preview.png" className="img-fluid" alt="" />
+          <img
+            src="/public/images/original_ff396240-a24a-48a5-86d3-d874b355626c_PXL_20220209_161718930-removebg-preview.png"
+            className="img-fluid"
+            alt=""
+          />
         </div>
       </div>
     </section>
   );
-
-  
 }

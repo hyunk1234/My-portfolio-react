@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 const GITHUB_USERNAME = "hyunk1234";
@@ -11,85 +10,78 @@ export default function Projects() {
   useEffect(() => {
     const controller = new AbortController();
 
-    
-async function fetchProjects() {
-  try {
-    setLoading(true);
-    setError("");
+    async function fetchProjects() {
+      try {
+        setLoading(true);
+        setError("");
 
-    const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
-      {
-        signal: controller.signal,
-        headers: {
-          Accept: "application/vnd.github+json",
-        },
-      }
-    );
+        const response = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
+          {
+            signal: controller.signal,
+            headers: {
+              Accept: "application/vnd.github+json",
+            },
+          },
+        );
 
-    if (!response.ok) {
-      throw new Error(`GitHub API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-
-    const filteredProjects = data.filter(
-      (repo) =>
-        !repo.fork &&
-        repo.name.toLowerCase() !== "my-portfolio" &&
-        repo.name.toLowerCase() !== "my-portfolio-react" &&
-        repo.name.toLowerCase() !== "junbeom" 
-    );
-
-    // Fetch languages for each repository
-    const projectsWithLanguages = await Promise.all(
-      filteredProjects.map(async (repo) => {
-        try {
-          const languageResponse = await fetch(
-            repo.languages_url,
-            { signal: controller.signal }
-          );
-
-          if (!languageResponse.ok) {
-            throw new Error("Failed to fetch languages");
-          }
-
-          const languageData = await languageResponse.json();
-
-          return {
-            ...repo,
-            languages: Object.keys(languageData),
-          };
-        } catch (err) {
-          if (err.name === "AbortError") throw err;
-
-          console.error(
-            `Failed to fetch languages for ${repo.name}:`,
-            err
-          );
-
-          return {
-            ...repo,
-            languages: repo.language ? [repo.language] : [],
-          };
+        if (!response.ok) {
+          throw new Error(`GitHub API error: ${response.status}`);
         }
-      })
-    );
 
-    setProjects(projectsWithLanguages);
-  } catch (err) {
-    if (err.name !== "AbortError") {
-      console.error("Error fetching repositories:", err);
-      setError("Unable to load projects from GitHub.");
-    }
-  } finally {
-    if (!controller.signal.aborted) {
-      setLoading(false);
-    }
-  }
-}
+        const data = await response.json();
 
+        const filteredProjects = data.filter(
+          (repo) =>
+            !repo.fork &&
+            repo.name.toLowerCase() !== "my-portfolio" &&
+            repo.name.toLowerCase() !== "my-portfolio-react" &&
+            repo.name.toLowerCase() !== "junbeom",
+        );
+
+        // Fetch languages for each repository
+        const projectsWithLanguages = await Promise.all(
+          filteredProjects.map(async (repo) => {
+            try {
+              const languageResponse = await fetch(repo.languages_url, {
+                signal: controller.signal,
+              });
+
+              if (!languageResponse.ok) {
+                throw new Error("Failed to fetch languages");
+              }
+
+              const languageData = await languageResponse.json();
+
+              return {
+                ...repo,
+                languages: Object.keys(languageData),
+              };
+            } catch (err) {
+              if (err.name === "AbortError") throw err;
+
+              console.error(`Failed to fetch languages for ${repo.name}:`, err);
+
+              return {
+                ...repo,
+                languages: repo.language ? [repo.language] : [],
+              };
+            }
+          }),
+        );
+
+        setProjects(projectsWithLanguages);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error("Error fetching repositories:", err);
+          setError("Unable to load projects from GitHub.");
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    }
 
     fetchProjects();
 
@@ -97,24 +89,20 @@ async function fetchProjects() {
   }, []);
 
   const getLiveUrl = (homepage) => {
-  if (!homepage) return null;
+    if (!homepage) return null;
 
-  try {
-    const value = homepage.trim();
+    try {
+      const value = homepage.trim();
 
-    const fullUrl = /^https?:\/\//i.test(value)
-      ? value
-      : `https://${value}`;
+      const fullUrl = /^https?:\/\//i.test(value) ? value : `https://${value}`;
 
-    const url = new URL(fullUrl);
+      const url = new URL(fullUrl);
 
-    return ["https:", "http:"].includes(url.protocol)
-      ? url.href
-      : null;
-  } catch {
-    return null;
-  }
-};
+      return ["https:", "http:"].includes(url.protocol) ? url.href : null;
+    } catch {
+      return null;
+    }
+  };
 
   return (
     <section id="portfolio" className="projects-section py-5">
@@ -133,16 +121,10 @@ async function fetchProjects() {
           </div>
         )}
 
-        {error && (
-          <div className="alert alert-danger text-center">
-            {error}
-          </div>
-        )}
+        {error && <div className="alert alert-danger text-center">{error}</div>}
 
         {!loading && !error && projects.length === 0 && (
-          <p className="text-center text-muted">
-            No public projects found.
-          </p>
+          <p className="text-center text-muted">No public projects found.</p>
         )}
 
         <div className="row g-4">
@@ -150,29 +132,23 @@ async function fetchProjects() {
             const liveUrl = getLiveUrl(project.homepage);
 
             return (
-              <div
-                className="col-lg-4 col-md-6"
-                key={project.id}
-              >
+              <div className="col-lg-4 col-md-6" key={project.id}>
                 <div className="project-card h-100">
                   <div className="project-icon">
                     <i className="bi bi-folder2-open"></i>
                   </div>
 
-                  <h4 className="project-title">
-                    {project.name}
-                  </h4>
+                  <h4 className="project-title">{project.name}</h4>
 
                   <p className="project-description">
-                    {project.description ||
-                      "No description provided."}
+                    {project.description || "No description provided."}
                   </p>
 
                   <div className="project-topics">
                     {project.languages?.map((language) => (
-                    <span className="project-tag" key={language}>
+                      <span className="project-tag" key={language}>
                         {language}
-                    </span>
+                      </span>
                     ))}
                   </div>
 
