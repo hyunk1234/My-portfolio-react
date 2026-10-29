@@ -38,7 +38,8 @@ async function fetchProjects() {
       (repo) =>
         !repo.fork &&
         repo.name.toLowerCase() !== "my-portfolio" &&
-        repo.name.toLowerCase() !== "junbeom"
+        repo.name.toLowerCase() !== "my-portfolio-react" &&
+        repo.name.toLowerCase() !== "junbeom" 
     );
 
     // Fetch languages for each repository

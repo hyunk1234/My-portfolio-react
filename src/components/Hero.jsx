@@ -57,7 +57,7 @@ export default function Hero() {
         </div>
 
         <div className="col-10 col-md-4 d-none d-md-block">
-            <img src="/images/original_ff396240-a24a-48a5-86d3-d874b355626c_PXL_20220209_161718930-removebg-preview.png" className="img-fluid" alt="" />
+            <img src="/public/images/original_ff396240-a24a-48a5-86d3-d874b355626c_PXL_20220209_161718930-removebg-preview.png" className="img-fluid" alt="" />
         </div>
       </div>
     </section>
